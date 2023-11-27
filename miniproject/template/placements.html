@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+{% block content %}
+  
+<body>
+    <nav>
+        <div class="container">
+            <h2 class="logo">placement </h2>
+            
+        </div>
+    </nav>
+
+    <!-- ----------main--------------- -->
+    <main>
+        <div class="container">
+            <div class="left">
+                
+                <div class="menu-items">
+                    <a class="menu-item " href="/">
+                        <span><i class="uil uil-home"></i></span>
+                        <h4>home</h4>
+                    </a>
+                    <a class="menu-item " href="/academic/">
+                        <span><i  class="fa fa-pencil" aria-hidden="true"></i>
+                        </span>
+                        <h4>academic</h4>
+                    </a>
+                    <a class="menu-item" href="/events/">
+                        <span><i class="fa fa-calendar"></i></span>
+                        <h4>events</h4>
+                    
+                    </a>
+                    <a class="menu-item" href="/sports/" >
+                        <span><i class="fa fa-trophy" ></i></span>
+                        <h4>sports</h4>
+                    </a> 
+                    <a class="menu-item" href="/nss/">
+                        <span><i class="fa fa-handshake"></i></span>
+                        <h4>nss</h4>
+                    </a>
+                    <a class="menu-item" href="/cultural/">
+                        <span><i class="fa fa-sign-language" ></i></span>
+                        <h4>cultural</h4>
+                    </a>
+                    <a class="menu-item active" href="/placements/">
+                        <span><i class="fa fa-briefcase"></i></span>
+                        <h4>placements</h4>
+                    </a>
+                    <a class="menu-item" id="theme">
+                        <span><i class="uil uil-palette"></i></span>
+                        <h4>theme</h4>
+                    </a>
+                    
+                </div>
+               
+            </div>
+            <div class="middle">
+
+
+                <div class="feeds">
+
+                    <div class="container1 container-bar">
+                        <div class="topbtn">
+                            <h2 class="logo ">placements notification</h2>
+                            <button class="dropbtn btn btn-primary">add</button>
+                        </div>
+                        <form method="post" id="add-media-form" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <label for="media-type">Media Type:</label>
+                            <select id="media-type" name="ptype">
+                                <option value="image">Image</option>
+                                <option value="video">Video</option>
+                            </select><br>
+                            <label for="media-file">Upload Media:</label>
+                            <input type="file" name="pfile" id="media-file" class="btn btn-primary"><br>
+
+                            <label for="media-title">Title:</label>
+                            <input type="text" name="ptitle" id="media-title" class="btn"><br>
+
+                            <label for="media-description" class="des">Description:</label>
+                            <textarea id="media-description" name="pdescription" class="btn"
+                                placeholder="write here"></textarea><br>
+
+                            <!-- <button type="submit" class="btn-primary btn" id="add-media-button">Add Media</button> -->
+                            <button type="submit" class="btn-primary btn form-btn ">Add Media</button>
+
+                        </form>
+
+                    </div>
+                    {{d}}
+                    <h2>latest notification</h2>
+                    {% for data in academicdata %}
+                    <div class="media-item">
+                        <img src="/static/media/{{data.image}}" alt="error">
+                        <div class="media-title">
+                            {{data.title}}
+                        </div>
+                        <div class="media-description">
+                            {{data.description}}
+                        </div>
+                        <div class="media-post-time">
+                            {{data.datetime}}
+                        </div>
+
+                    </div>
+                    {% endfor %}
+
+
+                    <ul id="media-list">
+                        <!-- Media items will be dynamically added here -->
+                    </ul>
+
+
+
+                    <!--  feeds ends -->
+
+                </div>
+
+                <!-- end of the middle -->
+            </div>
+
+
+
+            <!--  right  startes-->
+            <div class="right">
+                <!-- messages starts  -->
+                <div class="messages">
+                    <div class="head">
+                        <h4>Messages</h4><i class="uil uil-edit"></i>
+                    </div>
+
+                    <!-- search bar -->
+                    <div class="search-bar">
+                        <!-- <i class="uil uil-search"></i> -->
+                        <!-- <input type="search" placeholder="search messages" id=""> -->
+                    </div>
+
+                    <!-- extraaa -->
+                    <div >
+                        <form action="" class="container formchange" id="add-media-form">
+                       
+                        <h1 class="logo smallfont">faculty suggestions</h1>
+                        <input type="text" id="todoInput" class="btn" value="" name='rightmg'placeholder="Add a new task"><br>
+                        <button  class="btn btn-primary" type="submit">Add</button>
+                        </form>
+                        {% for d  in rightdata  %}
+                        <ul id="todoList" >
+                            <span class="rightitems btn" style="border : 1px solid rgb(184, 172, 172); margin: 5px;">{{d.name}}</span>     
+                        
+                        </ul>
+                            {% endfor %}
+                    </div>
+
+
+
+                    <!--catagories  -->
+
+
+                    <!-- message 1 -->
+                    <!-- <div class="message">
+                        <div class="profile-picture">
+                            <img src="images/profile-11.jpg" alt="">
+                            <span class="active"></span>
+                        </div>
+                        <div class="message-info">
+                            <h5>abbu</h5>
+                            <p class="text-muted">had your lunch bruh ?</p>
+                        </div>
+                    </div> -->
+
+
+
+                </div>
+
+                <!-- messages ends -->
+
+                <!-- request starts -->
+
+                <!-- reqeusts ends -->
+
+            </div>
+            <!--  right ends -->
+
+    </main>
+
+    <!--  =============== costamize color size = ============== -->
+
+    <div class="costomize">
+        <div class="card">
+            <h3>Custamize your view </h2>
+                <p class="text-muted">manage your font size,color, and background</p>
+
+                <!-- font size -->
+                <div class="font-size">
+                    <h4>Font size
+            </h3>
+            <div class="font-size-bg">
+                <h6>Aa</h6>
+                <div class="sizes">
+                    <span class="font-size-1 active"></span>
+                    <span class="font-size-2"></span>
+                    <span class="font-size-3"></span>
+                    <span class="font-size-4"></span>
+                    <span class="font-size-5"></span>
+                </div>
+                <h3>Aa</h3>
+            </div>
+        </div>
+        <!-- font size ends -->
+        <!-- color start -->
+
+        <div class="colors">
+            <h4>Color</h3>
+                <div class="color">
+                    <div class="color-1 active"></div>
+                    <div class="color-2"></div>
+                    <div class="color-3"></div>
+                    <div class="color-4"></div>
+                    <div class="color-5"></div>
+                </div>
+        </div>
+
+        <!-- color ends -->
+        <!-- background color starts -->
+
+        <div class="backgrounds">
+            <h4>Background</h3>
+                <div class="bg-color">
+                    <div class="bg-1 "><span></span>Light</div>
+                    <div class="bg-2"><span></span>Dim</div>
+                    <div class="bg-3 active"><span></span>Lights out</div>
+                </div>
+        </div>
+
+        <!-- background color ends -->
+
+    </div>
+    </div>
+</body>
+
+</html>
+
+{% endblock content %}
